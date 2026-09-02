@@ -57,7 +57,7 @@
                 <div class="mt-12 flex flex-col sm:flex-row justify-center gap-4">
 
                     <a
-                        href="{{ route('tenant.home') }}"
+                        href="{{ route('tenants.home') }}"
                         class="rounded-xl bg-indigo-600 px-6 py-3 text-center font-semibold transition hover:bg-indigo-500">
 
                         Voltar para o início
