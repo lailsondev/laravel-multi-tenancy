@@ -40,7 +40,7 @@ Route::middleware([
         User::all();
 
         return view('welcome');
-    });
+    })->name('tenant.dashboard');
 });
 
 
