@@ -2,6 +2,9 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Tenants\TenantDashboardController;
+use App\Http\Controllers\Tenants\TenantHomeController;
+use App\Http\Controllers\Tenants\TenantRegisterController;
 use App\Http\Middleware\TenantCanAccess;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -30,17 +33,13 @@ Route::middleware([
     PreventAccessFromCentralDomains::class,
     TenantCanAccess::class
 ])->group(function () {
-    Route::get('/', function () {
-        return view('welcome');
-    })
+    Route::get('/', [TenantRegisterController::class, 'index'])
         ->withoutMiddleware(TenantCanAccess::class)
-        ->name('tenant.home');
+        ->name('tenants.home');
 
-    Route::get('/dashboard', function () {
-        User::all();
-
-        return view('welcome');
-    })->name('tenant.dashboard');
+    Route::post('/register', [TenantRegisterController::class, 'store'])
+        ->withoutMiddleware(TenantCanAccess::class)
+        ->name('tenants.register');
 });
 
 
